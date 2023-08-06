@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Danbooru - Frontpage
 // @namespace    danbooru.hdk5
-// @version      1.0.2
+// @version      1.0.3
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
@@ -93,18 +93,16 @@ div#el-event-notice {
     $('menu#subnav-menu').remove();
     $('#nav').css('display', 'block');
 
-    $.get('/counts/posts.json').then((result) => {
-        result.counts.posts.toString().split('').forEach((n) => {
-            $counterGirls.append(
-                $('<div>', {
-                    class: 'counter-girl',
-                    html: $('<img>', {
-                        src: GM_getResourceURL(`counter-${n}`),
-                        alt: n,
-                    }),
+    ($("article[data-id]").attr('data-id') || "").split('').forEach((n) => {
+        $counterGirls.append(
+            $('<div>', {
+                class: 'counter-girl',
+                html: $('<img>', {
+                    src: GM_getResourceURL(`counter-${n}`),
+                    alt: n,
                 }),
-            );
-        });
+            }),
+        );
     });
 
     let $body = $('body');
