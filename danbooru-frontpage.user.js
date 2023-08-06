@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Danbooru - Frontpage
 // @namespace    danbooru.hdk5
-// @version      1.0.1
+// @version      1.0.2
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
@@ -74,6 +74,11 @@ div#counter-girls {
 
 div.counter-girl img {
     width: 100%;
+}
+
+div#el-event-notice {
+    text-align: initial;
+    margin-bottom: 1em;
 }
     `);
 
