@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Danbooru - Frontpage
 // @namespace    danbooru.hdk5
-// @version      1.0.0
+// @version      1.0.1
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
@@ -30,7 +30,7 @@ GM_addStyle(`body { visibility: hidden; }`);
 
 document.addEventListener('DOMContentLoaded', () => {
     GM_addStyle(`
-body {
+div#static-index {
     text-align: center;
 }
 
@@ -53,26 +53,31 @@ header#top nav#nav menu#main-menu {
 }
 
 form#search-box-form {
-    max-width: 450px;
     width: 100%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
+    justify-content: center;
+}
+
+form#search-box-form input#tags {
+    max-width: 400px;
 }
 
 div#counter-girls {
     display: flex;
+    justify-content: center;
     margin-bottom: 2em;
     margin-left: auto;
     margin-right: auto;
 }
 
-img.counter-girl  {
+div.counter-girl img {
     width: 100%;
-    flex: 1;
 }
     `);
 
+    let $index = $('<div id="static-index">');
     let $topHeader = $('header#top');
     let $searchBoxForm = $('form#search-box-form');
     let $counterGirls = $(`<div id="counter-girls"></div>`)
@@ -85,22 +90,25 @@ img.counter-girl  {
 
     $.get('/counts/posts.json').then((result) => {
         result.counts.posts.toString().split('').forEach((n) => {
-            let $img = $('<img>', {
-                src: GM_getResourceURL(`counter-${n}`),
-                alt: n,
-                class: 'counter-girl',
-            });
-            $counterGirls.append($img);
+            $counterGirls.append(
+                $('<div>', {
+                    class: 'counter-girl',
+                    html: $('<img>', {
+                        src: GM_getResourceURL(`counter-${n}`),
+                        alt: n,
+                    }),
+                }),
+            );
         });
     });
 
-
     let $body = $('body');
     $body.empty();
-    $body.append($topHeader);
-    $body.append($searchBoxForm);
-    $body.append($counterGirls);
-    $body.append($footer);
+    $index.append($topHeader);
+    $index.append($searchBoxForm);
+    $index.append($counterGirls);
+    $index.append($footer);
+    $body.append($index);
 
     GM_addStyle(`body { visibility: unset; }`);
 });
