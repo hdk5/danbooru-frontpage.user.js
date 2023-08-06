@@ -8,6 +8,10 @@
 // @grant        GM_getResourceURL
 // @grant        GM_addStyle
 // @run-at       document-start
+// @homepageURL  https://github.com/hdk5/danbooru-frontpage.user.js
+// @supportURL   https://github.com/hdk5/danbooru-frontpage.user.js/issues
+// @updateURL    https://github.com/hdk5/danbooru-frontpage.user.js/raw/master/danbooru-frontpage.user.js
+// @downloadURL  https://github.com/hdk5/danbooru-frontpage.user.js/raw/master/danbooru-frontpage.user.js
 // @resource     counter-0 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/0.gif
 // @resource     counter-1 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/1.gif
 // @resource     counter-2 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/2.gif
