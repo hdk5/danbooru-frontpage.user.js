@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Danbooru - Frontpage
 // @namespace    danbooru.hdk5
-// @version      1.0.3
+// @version      1.0.4
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
@@ -29,27 +29,43 @@
 GM_addStyle(`body { visibility: hidden; }`);
 
 document.addEventListener('DOMContentLoaded', () => {
+    // https://gitlab.com/hdk5/danbooru/-/blob/c0e5fd445f81497e19391177b1fed6c831a6e391/app/javascript/src/styles/specific/static_index.scss
     GM_addStyle(`
-div#static-index {
+header#top, nav#nav {
     text-align: center;
+}
+
+header#top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1 1 0%;
 }
 
 header#top #app-name-header {
     font-size: 4em;
     margin-top: 1em;
-    margin-left: unset;
-    margin-right: unset;
+    margin-left: auto;
+    margin-right: auto;
     height: unset;
 }
 
+#maintoggle {
+  display: none !important;
+}
+
 header#top nav#nav {
-    display: unset;
+    display: block;
     margin-top: 1em;
     margin-bottom: 1em;
 }
 
 header#top nav#nav menu#main-menu {
     background-color: unset;
+}
+
+div#page {
+    flex: 2 1 0%;
 }
 
 form#search-box-form {
@@ -75,25 +91,19 @@ div#counter-girls {
 div.counter-girl img {
     width: 100%;
 }
-
-div#el-event-notice {
-    text-align: initial;
-    margin-bottom: 1em;
-}
     `);
 
-    let $index = $('<div id="static-index">');
-    let $topHeader = $('header#top');
+    // https://gitlab.com/hdk5/danbooru/-/blob/c0e5fd445f81497e19391177b1fed6c831a6e391/app/views/static/index.html.erb
+    let $cStatic = $(`<div id="c-static"></div>`);
+    let $aIndex = $('<div id="a-index"></div>');
+    $cStatic.append($aIndex);
+
     let $searchBoxForm = $('form#search-box-form');
-    let $counterGirls = $(`<div id="counter-girls"></div>`)
-    let $footer = $('footer#page-footer');
+    $aIndex.append($searchBoxForm)
 
-    $('.current').removeClass('current');
-    $('#maintoggle').remove();
-    $('menu#subnav-menu').remove();
-    $('#nav').css('display', 'block');
-
-    ($("article[data-id]").attr('data-id') || "").split('').forEach((n) => {
+    let postCount = $("article[data-id]").attr('data-id') || "";
+    let $counterGirls = $(`<div id="counter-girls"></div>`);
+    postCount.split('').forEach((n) => {
         $counterGirls.append(
             $('<div>', {
                 class: 'counter-girl',
@@ -104,14 +114,12 @@ div#el-event-notice {
             }),
         );
     });
+    $aIndex.append($counterGirls);
 
-    let $body = $('body');
-    $body.empty();
-    $index.append($topHeader);
-    $index.append($searchBoxForm);
-    $index.append($counterGirls);
-    $index.append($footer);
-    $body.append($index);
+    $('.current').removeClass('current');
+    $('menu#subnav-menu').remove();
+    $('#c-posts').remove();
+    $('#page').append($cStatic);
 
     GM_addStyle(`body { visibility: unset; }`);
 });
