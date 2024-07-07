@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Danbooru - Frontpage
 // @namespace    danbooru.hdk5
-// @version      1.0.4
+// @version      1.9.9
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
@@ -10,8 +10,8 @@
 // @run-at       document-start
 // @homepageURL  https://github.com/hdk5/danbooru-frontpage.user.js
 // @supportURL   https://github.com/hdk5/danbooru-frontpage.user.js/issues
-// @updateURL    https://github.com/hdk5/danbooru-frontpage.user.js/raw/master/danbooru-frontpage.user.js
-// @downloadURL  https://github.com/hdk5/danbooru-frontpage.user.js/raw/master/danbooru-frontpage.user.js
+// @updateURL    https://github.com/hdk5/danbooru.user.js/raw/master/dist/frontpage.user.js
+// @downloadURL  https://github.com/hdk5/danbooru.user.js/raw/master/dist/frontpage.user.js
 // @resource     counter-0 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/0.gif
 // @resource     counter-1 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/1.gif
 // @resource     counter-2 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/2.gif
@@ -23,6 +23,10 @@
 // @resource     counter-8 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/8.gif
 // @resource     counter-9 https://raw.githubusercontent.com/hdk5/danbooru-frontpage.user.js/da419aeeb3c27015ba74c2819c0ea7f1ca32dd26/resource/9.gif
 // ==/UserScript==
+
+// Notice:
+// This is the archived script version
+// see https://github.com/hdk5/danbooru.user.js?tab=readme-ov-file#frontpage instead
 
 /* globals $ */
 
