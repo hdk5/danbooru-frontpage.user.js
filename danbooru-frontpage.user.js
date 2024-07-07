@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Danbooru - Frontpage
+// @name         Danbooru - Frontpage (old)
 // @namespace    danbooru.hdk5
-// @version      1.9.9
+// @version      1.9.99
 // @description  Bring back the front page and catgirls post counter
 // @author       hdk5
 // @match        *://*.donmai.us/
